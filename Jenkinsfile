@@ -35,6 +35,7 @@ def gitCommit() {
         marathon(
             url: 'http://marathon.mesos:8080',
             forceUpdate: false,
+            credentialsId: 'dcos-token',
             filename: 'marathon.json',
             appid: 'howdy',
             docker: "esiemes-i-publicsl-hbmsg0m3jdwp-143130393.eu-central-1.elb.amazonaws.com:50000/root/howdy:${gitCommit()}".toString()
