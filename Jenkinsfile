@@ -12,7 +12,7 @@ def gitCommit() {
 
         // Build Docker image
         stage 'Build'
-        sh "docker build -t esiemes-i-publicsl-hbmsg0m3jdwp-143130393.eu-central-1.elb.amazonaws.com:50000/root/howdy:${gitCommit()} ."
+        sh "docker build -t gitlab.marathon.l4lb.thisdcos.directory:50000/root/howdy:${gitCommit()} ."
 
         // Log in and push image to GitLab
         stage 'Publish'
@@ -24,8 +24,8 @@ def gitCommit() {
                 usernameVariable: 'GITLAB_USERNAME'
             ]]
         ) {
-            sh "docker login -u ${env.GITLAB_USERNAME} -p ${env.GITLAB_PASSWORD}  esiemes-i-publicsl-hbmsg0m3jdwp-143130393.eu-central-1.elb.amazonaws.com:50000"
-            sh "docker push esiemes-i-publicsl-hbmsg0m3jdwp-143130393.eu-central-1.elb.amazonaws.com:50000/root/howdy:${gitCommit()}"
+            sh "docker login -u ${env.GITLAB_USERNAME} -p ${env.GITLAB_PASSWORD}  gitlab.marathon.l4lb.thisdcos.directory:50000"
+            sh "docker push gitlab.marathon.l4lb.thisdcos.directory:50000/root/howdy:${gitCommit()}"
         }
 
 
@@ -38,6 +38,6 @@ def gitCommit() {
             credentialsId: 'dcos-token',
             filename: 'marathon.json',
             appid: 'howdy',
-            docker: "esiemes-i-publicsl-hbmsg0m3jdwp-143130393.eu-central-1.elb.amazonaws.com:50000/root/howdy:${gitCommit()}".toString()
+            docker: "gitlab.marathon.l4lb.thisdcos.directory:50000/root/howdy:${gitCommit()}".toString()
         )
     }
