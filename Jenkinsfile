@@ -34,10 +34,10 @@ def gitCommit() {
 
         marathon(
             url: 'http://marathon.mesos:8080',
-            forceUpdate: false,
+            forceUpdate: true,
             credentialsId: 'dcos-token',
             filename: 'marathon.json',
-            appid: 'howdy',
+            id: 'howdy',
             docker: "digitalemil/mypublicrepo:cicd-howdy-${gitCommit()}".toString()
         )
     }
