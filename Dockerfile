@@ -1,4 +1,4 @@
-FROM digitalemil/myrepo:centos72
+FROM centos:7.2.1511
 COPY lib/opt/node694 /opt/node694
 COPY . /opt/app
 RUN ln -s /opt/node694 /opt/node
